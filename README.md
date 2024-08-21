@@ -62,7 +62,7 @@ To reiterate:
 
 Again, we want to see what you'd do if we assigned you this task at work. If you think something should exist for this, then include it in your submission. There aren't any tricks, this is the main part of the interview process. 
 
-To submit your application please fork this repository, and create a pull request with your new feature. Do not make the pull request on this repository as other candidates will see them. When you're ready to submit your pull request please send a link to the email address provided to you. 
+To submit your application please fork this repository, and create a pull request with your new feature. Do not make the pull request on this repository as other candidates will see them. When you're ready to submit your pull request please send a link to the email address provided to you. Please include your full name, address, phone number, and email address in your submission.
 
 If you have specific questions about the assignment, email the email address provided to you. 
 
