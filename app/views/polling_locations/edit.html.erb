@@ -4,7 +4,7 @@
       <button data-action="form#close" class="ml-auto">X</button>
     </div>
 
-    <h1 class="text-xl font-semibold leading-6 text-gray-900 mb-3">Edit polling location for <%= @riding.name %> - <%= @riding.riding_code %></h1>
+    <h1 class="text-xl font-semibold leading-6 text-gray-900 mb-3">Edit polling location for <%= @polling_location.riding.name %> - <%= @polling_location.riding.riding_code %></h1>
 
     <%= form_with model: @polling_location, class: "flex flex-col gap-4" do |form| %>
       <div class="flex flex-col">
@@ -35,6 +35,14 @@
         <%= form.label :postal_code %>
         <%= form.text_field :postal_code %>
         <% @polling_location.errors.full_messages_for(:postal_code).each do |message| %>
+          <div class="text-red-600"><%= message %></div>
+        <% end %>
+      </div>
+
+      <div class="flex flex-col">
+        <%= label_tag :poll_numbers, 'Polls' %>
+        <%= text_field_tag :poll_numbers, @polling_location.poll_numbers.join(", ") %>
+        <% @polling_location.errors.full_messages_for(:poll).each do |message| %>
           <div class="text-red-600"><%= message %></div>
         <% end %>
       </div>

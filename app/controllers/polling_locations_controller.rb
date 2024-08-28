@@ -1,14 +1,20 @@
 class PollingLocationsController < ApplicationController
   def edit
     @polling_location = PollingLocation.find(params[:id])
-    @riding = @polling_location.riding
   end
 
   def update
     @polling_location = PollingLocation.find(params[:id])
-    @riding = @polling_location.riding
 
-    unless @polling_location.update(polling_location_params)
+    poll_numbers = params[:poll_numbers].split(',').map(&:strip)
+
+    @polling_location.poll_numbers_to_validate = poll_numbers
+
+    polls = Poll.where(number: poll_numbers, riding: @polling_location.riding)
+
+    if @polling_location.update(polling_location_params.merge(polls:))
+      render :update
+    else
       render :edit, status: :unprocessable_entity
     end
   end
