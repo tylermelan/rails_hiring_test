@@ -6,7 +6,7 @@
 
 <h2 class="mt-4 text-lg font-semibold leading-6 text-gray-900">Polling locations</h2>
 
-<div class="mt-6 p-6 border border-gray-500 rounded-lg grid grid-cols-6 gap-y-2">
+<div class="mt-6 p-6 border border-gray-500 rounded-lg grid grid-cols-7 gap-y-2">
   <div class="col-span-2 font-medium">
     Title
   </div>
@@ -29,27 +29,12 @@
 
   <% if @polling_locations.any? %>
     <% @polling_locations.each do |polling_location| %>
-      <div class="col-span-2">
-        <%= polling_location.title %>
-      </div>
-
-      <div class="col-span-1">
-        <%= polling_location.address %>
-      </div>
-
-      <div class="col-span-1">
-        <%= polling_location.city %>
-      </div>
-
-      <div class="col-span-1">
-        <%= polling_location.postal_code %>
-      </div>
-
-      <div class="col-span-1">
-        <%= polling_location.polls.map(&:number).join(", ")  %>
-      </div>
+      <%= render 'polling_location_row', polling_location: %>
     <% end %>
   <% else %>
     <div class="col-span-5 text-center mt-3">No polling locations</div>
   <% end%>
 </div>
+
+<%= turbo_frame_tag 'polling_location_form' do %>
+<% end %>

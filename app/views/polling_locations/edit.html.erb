@@ -1,0 +1,49 @@
+<%= turbo_frame_tag 'polling_location_form' do %>
+  <dialog data-controller="form" class="p-8">
+    <div class="flex">
+      <button data-action="form#close" class="ml-auto">X</button>
+    </div>
+
+    <h1 class="text-xl font-semibold leading-6 text-gray-900 mb-3">Edit polling location for <%= @riding.name %> - <%= @riding.riding_code %></h1>
+
+    <%= form_with model: @polling_location, class: "flex flex-col gap-4" do |form| %>
+      <div class="flex flex-col">
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+        <% @polling_location.errors.full_messages_for(:title).each do |message| %>
+          <div class="text-red-600"><%= message %></div>
+        <% end %>
+      </div>
+
+      <div class="flex flex-col">
+        <%= form.label :address %>
+        <%= form.text_field :address %>
+        <% @polling_location.errors.full_messages_for(:address).each do |message| %>
+          <div class="text-red-600"><%= message %></div>
+        <% end %>
+      </div>
+
+      <div class="flex flex-col">
+        <%= form.label :city %>
+        <%= form.text_field :city %>
+        <% @polling_location.errors.full_messages_for(:city).each do |message| %>
+          <div class="text-red-600"><%= message %></div>
+        <% end %>
+      </div>
+
+      <div class="flex flex-col">
+        <%= form.label :postal_code %>
+        <%= form.text_field :postal_code %>
+        <% @polling_location.errors.full_messages_for(:postal_code).each do |message| %>
+          <div class="text-red-600"><%= message %></div>
+        <% end %>
+      </div>
+
+      <% @polling_location.errors.full_messages_for(:base).each do |message| %>
+        <div class="text-red-600"><%= message %></div>
+      <% end %>
+
+      <%= form.submit "Update", class: "cursor-pointer bg-slate-100 hover:bg-slate-200 rounded p-2" %>
+    <% end %>
+  </dialog>
+<% end %>

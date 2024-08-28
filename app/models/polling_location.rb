@@ -7,6 +7,7 @@ class PollingLocation < ApplicationRecord
   validates :city, presence: true
   validates :postal_code, presence: true
   validate :validate_postal_code
+  validate :unique_to_riding
   
   after_validation :format_postal_code
 
@@ -17,6 +18,12 @@ class PollingLocation < ApplicationRecord
   def validate_postal_code
     unless self.postal_code.present? && /[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ ]?\d[ABCEGHJ-NPRSTV-Z]\d/.match?(self.postal_code.upcase)
       errors.add(:postal_code, "must be valid")
+    end
+  end
+
+  def unique_to_riding
+    if PollingLocation.where.not(id:).exists?(riding:, title:, address:, city:, postal_code:)
+      errors.add(:base, 'Polling location is not unique')
     end
   end
 end
