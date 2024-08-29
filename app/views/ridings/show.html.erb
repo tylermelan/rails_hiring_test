@@ -3,29 +3,32 @@
 <h1 class="text-xl font-semibold leading-6 text-gray-900"><%= @riding.name %> - <%= @riding.riding_code %></h1>
 <%= @riding.province %>
 
+<div class="flex">
+  <h2 class="mt-4 text-lg font-semibold leading-6 text-gray-900">Polling locations</h2>
+  <%= link_to 'Add polling location', new_riding_polling_location_path(@riding), data: { turbo_frame: 'polling_location_form' }, class: "ml-auto bg-slate-100 hover:bg-slate-200 rounded p-2 border-2" %>
+</div>
 
-<h2 class="mt-4 text-lg font-semibold leading-6 text-gray-900">Polling locations</h2>
+<div class="mt-6 border border-gray-500 rounded-lg grid grid-cols-7 overflow-clip gap-x-2">
+  <div class="grid grid-cols-subgrid col-span-full p-6 sticky top-0 bg-slate-200 font-medium">
+    <div class="col-span-2">
+      Title
+    </div>
 
-<%= link_to 'Add new polling location', new_riding_polling_location_path(@riding), data: { turbo_frame: 'polling_location_form' } %>
-<div class="mt-6 p-6 border border-gray-500 rounded-lg grid grid-cols-7 gap-y-2">
-  <div class="col-span-2 font-medium">
-    Title
-  </div>
+    <div>
+      Address
+    </div>
 
-  <div class="col-span-1 font-medium">
-    Address
-  </div>
+    <div>
+      City
+    </div>
 
-  <div class="col-span-1 font-medium">
-    City
-  </div>
+    <div>
+      Postal code
+    </div>
 
-  <div class="col-span-1 font-medium">
-    Postal code
-  </div>
-
-  <div class="col-span-1 font-medium">
-    Polls
+    <div>
+      Polls
+    </div>
   </div>
 
   <% if @polling_locations.any? %>
