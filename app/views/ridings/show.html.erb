@@ -6,6 +6,7 @@
 
 <h2 class="mt-4 text-lg font-semibold leading-6 text-gray-900">Polling locations</h2>
 
+<%= link_to 'Add new polling location', new_riding_polling_location_path(@riding), data: { turbo_frame: 'polling_location_form' } %>
 <div class="mt-6 p-6 border border-gray-500 rounded-lg grid grid-cols-7 gap-y-2">
   <div class="col-span-2 font-medium">
     Title
@@ -28,8 +29,10 @@
   </div>
 
   <% if @polling_locations.any? %>
-    <% @polling_locations.each do |polling_location| %>
-      <%= render 'polling_location_row', polling_location: %>
+    <%= turbo_frame_tag 'polling_locations', class: "grid grid-cols-subgrid col-span-full auto-rows-fr" do %>
+      <% @polling_locations.each do |polling_location| %>
+        <%= render 'polling_location_row', polling_location:, riding: @riding %>
+      <% end %>
     <% end %>
   <% else %>
     <div class="col-span-5 text-center mt-3">No polling locations</div>

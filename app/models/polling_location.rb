@@ -11,7 +11,7 @@ class PollingLocation < ApplicationRecord
   validate :validate_postal_code
   validate :validate_poll_numbers
   validate :validate_unique_to_riding
-  
+
   after_validation :format_postal_code
 
   def poll_numbers
@@ -40,7 +40,7 @@ class PollingLocation < ApplicationRecord
 
       poll_numbers_to_validate.each do |poll_number|
         unless poll_number.in?(poll_numbers_set)
-          errors.add(:poll, "#{poll_number} is not available")
+          errors.add(:polls, "Poll #{poll_number} is not available")
         end
       end
     end

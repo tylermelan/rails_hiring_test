@@ -19,5 +19,5 @@
     <%= polling_location.polls.map(&:number).join(", ")  %>
   </div>
 
-  <%= link_to 'edit', edit_polling_location_path(polling_location), class: "col-span-1" %>
+  <%= link_to 'edit', edit_riding_polling_location_path(riding, polling_location), class: "col-span-1" %>
 <% end %>

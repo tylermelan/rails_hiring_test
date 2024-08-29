@@ -1,0 +1,35 @@
+<% errors = polling_location.errors %>
+
+<%= turbo_frame_tag 'polling_location_form' do %>
+  <dialog data-controller="form" class="p-8">
+    <div class="flex">
+      <button data-action="form#close" class="ml-auto">X</button>
+    </div>
+
+    <h1 class="text-xl font-semibold leading-6 text-gray-900 mb-3">
+      <%= header %>
+    </h1>
+
+    <%= form_with model: [riding, polling_location], class: "flex flex-col gap-4" do |form| %>
+      <%= render "form_input", form:, errors:, attribute: :title %>
+
+      <%= render "form_input", form:, errors:, attribute: :address %>
+
+      <%= render "form_input", form:, errors:, attribute: :city %>
+
+      <%= render "form_input", form:, errors:, attribute: :postal_code %>
+
+      <%= render "form_input",
+            form:,
+            errors:,
+            attribute: :polls,
+            name: :poll_numbers,
+            value: polling_location.poll_numbers.join(", ")
+      %>
+
+      <%= render "error_messages", error_messages: errors.messages_for(:base) %>
+
+      <%= form.submit "Update", class: "cursor-pointer bg-slate-100 hover:bg-slate-200 rounded p-2" %>
+    <% end %>
+  </dialog>
+<% end %>
