@@ -4,8 +4,8 @@
 
 import { application } from "./application"
 
-import FormController from "./form_controller"
-application.register("form", FormController)
-
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import PollingLocationFormController from "./polling_location_form_controller"
+application.register("polling-location-form", PollingLocationFormController)
