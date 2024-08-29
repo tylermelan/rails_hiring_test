@@ -1,5 +1,8 @@
-<%= render 'polling_location_form',
-  header: "New polling location for #{@riding.name} - #{@riding.riding_code}",
-  riding: @riding,
-  polling_location: @polling_location
+<%=
+  render(
+    'polling_location_form',
+    header: "New polling location for #{@riding.name} - #{@riding.riding_code}",
+    riding: @riding,
+    polling_location: @polling_location
+  )
 %>
