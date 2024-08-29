@@ -3,12 +3,16 @@ class RidingsController < ApplicationController
 
   # GET /ridings or /ridings.json
   def index
-    @ridings = Riding.all
+    @ridings = Riding
+                .select("ridings.*", "COUNT(polls.id) AS polls_count")
+                .left_joins(:polls)
+                .group(:id)
+                .order(:riding_code)
   end
 
   # GET /ridings/1 or /ridings/1.json
   def show
-    @polling_locations = @riding.polling_locations
+    @polling_locations = @riding.polling_locations.includes(:polls)
   end
 
   # GET /ridings/new

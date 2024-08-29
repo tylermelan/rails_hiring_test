@@ -1,0 +1,23 @@
+<%= turbo_frame_tag dom_id(polling_location), target: 'polling_location_form', class: "grid grid-cols-subgrid col-span-full hover:bg-slate-100 p-6" do %>
+  <div class="col-span-2">
+    <%= polling_location.title %>
+  </div>
+
+  <div>
+    <%= polling_location.address %>
+  </div>
+
+  <div>
+    <%= polling_location.city %>
+  </div>
+
+  <div>
+    <%= polling_location.postal_code %>
+  </div>
+
+  <div>
+    <%= polling_location.polls.map(&:number).join(", ")  %>
+  </div>
+
+  <%= link_to 'Edit', edit_riding_polling_location_path(riding, polling_location), class: "col-span-1 bg-white rounded p-2 max-h-10 text-center border-2 hover:border-slate-400" %>
+<% end %>

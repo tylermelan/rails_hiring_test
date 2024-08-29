@@ -1,0 +1,13 @@
+<%
+  text_field_options = {
+    class: "border-2 rounded w-full"
+  }
+  text_field_options[:name] = name if local_assigns[:name]
+  text_field_options[:value] = value if local_assigns[:value]
+%>
+
+<div class="flex flex-col">
+  <%= form.label attribute %>
+  <%= form.text_field attribute, text_field_options %>
+  <%= render "error_messages", error_messages: errors.messages_for(attribute) %>
+</div>

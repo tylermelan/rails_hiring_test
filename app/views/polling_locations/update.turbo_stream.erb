@@ -1,0 +1,11 @@
+<%= turbo_stream.update 'polling_location_form' %>
+<%=
+  turbo_stream.replace(
+    dom_id(@polling_location),
+    partial: 'ridings/polling_location_row',
+    locals: {
+      polling_location: @polling_location, riding: @riding
+    }
+  )
+%>
+<%= render "other_polling_locations", other_polling_locations: @other_polling_locations %>
