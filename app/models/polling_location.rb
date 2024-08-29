@@ -30,17 +30,21 @@ class PollingLocation < ApplicationRecord
 
   def validate_unique_to_riding
     if PollingLocation.where.not(id:).exists?(riding:, title:, address:, city:, postal_code:)
-      errors.add(:base, "Polling location is not unique")
+      errors.add(:base, "polling location must be unique to riding")
     end
   end
 
   def validate_poll_numbers
     if poll_numbers_to_validate
+      if poll_numbers_to_validate.empty?
+        errors.add(:polls, "can't be blank")
+      end
+
       poll_numbers_set = Set.new(polls.map(&:number))
 
       poll_numbers_to_validate.each do |poll_number|
         unless poll_number.in?(poll_numbers_set)
-          errors.add(:polls, "Poll #{poll_number} is not available")
+          errors.add(:polls, "poll #{poll_number} is not in this riding")
         end
       end
     end

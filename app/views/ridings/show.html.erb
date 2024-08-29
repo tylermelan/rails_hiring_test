@@ -31,15 +31,16 @@
     </div>
   </div>
 
-  <% if @polling_locations.any? %>
-    <%= turbo_frame_tag 'polling_locations', class: "grid grid-cols-subgrid col-span-full auto-rows-fr" do %>
-      <% @polling_locations.each do |polling_location| %>
-        <%= render 'polling_location_row', polling_location:, riding: @riding %>
+  <%= turbo_frame_tag 'polling_locations', class: "grid grid-cols-subgrid col-span-full auto-rows-fr" do %>
+    <% @polling_locations.each do |polling_location| %>
+      <%= render 'polling_location_row', polling_location:, riding: @riding %>
+    <% end %>
+    <% unless @polling_locations.any? %>
+      <%= turbo_frame_tag 'no_polling_locations', class: "grid grid-cols-subgrid col-span-full" do %>
+        <div class="col-span-5 text-center mt-3">No polling locations</div>
       <% end %>
     <% end %>
-  <% else %>
-    <div class="col-span-5 text-center mt-3">No polling locations</div>
-  <% end%>
+  <% end %>
 </div>
 
 <%= turbo_frame_tag 'polling_location_form' do %>

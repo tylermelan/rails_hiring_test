@@ -1,0 +1,15 @@
+<% other_polling_locations.each do |polling_location| %>
+  <% if polling_location.destroyed? %>
+    <%= turbo_stream.remove dom_id(polling_location) %>
+  <% else %>
+    <%=
+      turbo_stream.replace(
+        dom_id(polling_location),
+        partial: 'ridings/polling_location_row',
+        locals: {
+          polling_location: polling_location, riding: @riding
+        }
+      )
+    %>
+  <% end %>
+<% end %>
